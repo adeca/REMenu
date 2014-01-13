@@ -58,31 +58,43 @@
         self.separatorHeight = 2.0;
         self.waitUntilAnimationIsComplete = YES;
         
-        self.textOffset = CGSizeMake(0, 0);
-        self.subtitleTextOffset = CGSizeMake(0, 0);
-        self.font = [UIFont boldSystemFontOfSize:21.0];
-        self.subtitleFont = [UIFont systemFontOfSize:14.0];
+        // default style
+        self.itemStyle = [[REMenuItemStyle alloc] init];
+        self.itemStyle.textOffset = CGSizeMake(0, 0);
+        self.itemStyle.font = [UIFont boldSystemFontOfSize:21.0];
+
+        self.itemStyle.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1.0];
+        self.itemStyle.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
+        self.itemStyle.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
+        self.itemStyle.textShadowColor = [UIColor blackColor];
+        self.itemStyle.textShadowOffset = CGSizeMake(0, -1.0);
+        self.itemStyle.textAlignment = NSTextAlignmentCenter;
         
-        self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1.0];
-        self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
-        self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
-        self.textShadowColor = [UIColor blackColor];
-        self.textShadowOffset = CGSizeMake(0, -1.0);
-        self.textAlignment = NSTextAlignmentCenter;
+        // highlighted style
+        self.highlightedItemStyle = [[REMenuItemStyle alloc] init];
         
-        self.highlightedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
-        self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
-        self.highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
-        self.highlightedTextShadowColor = [UIColor blackColor];
-        self.highlightedTextShadowOffset = CGSizeMake(0, -1.0);
+        self.highlightedItemStyle.backgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        self.highlightedItemStyle.separatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        self.highlightedItemStyle.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
+        self.highlightedItemStyle.textShadowColor = [UIColor blackColor];
+        self.highlightedItemStyle.textShadowOffset = CGSizeMake(0, -1.0);
         
-        self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
-        self.subtitleTextShadowColor = [UIColor blackColor];
-        self.subtitleTextShadowOffset = CGSizeMake(0, -1.0);
-        self.subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
-        self.subtitleHighlightedTextShadowColor = [UIColor blackColor];
-        self.subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1.0);
-        self.subtitleTextAlignment = NSTextAlignmentCenter;
+        // subtitle style
+        self.subtitleItemStyle = [[REMenuItemStyle alloc] init];
+        self.subtitleItemStyle.textOffset = CGSizeMake(0, 0);
+        self.subtitleItemStyle.font = [UIFont systemFontOfSize:14.0];
+        
+        self.subtitleItemStyle.textColor = [UIColor colorWithWhite:0.425 alpha:1.000];
+        self.subtitleItemStyle.textShadowColor = [UIColor blackColor];
+        self.subtitleItemStyle.textShadowOffset = CGSizeMake(0, -1.0);
+        self.subtitleItemStyle.textAlignment = NSTextAlignmentCenter;
+        
+        // subtitle highlighted style
+        self.subtitleHighlightedItemStyle = [[REMenuItemStyle alloc] init];
+        
+        self.subtitleHighlightedItemStyle.textColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
+        self.subtitleHighlightedItemStyle.textShadowColor = [UIColor blackColor];
+        self.subtitleHighlightedItemStyle.textShadowOffset = CGSizeMake(0, -1.0);
         
         self.borderWidth = 1.0;
         self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
@@ -127,7 +139,7 @@
     self.menuView = ({
         UIView *view = [[UIView alloc] init];
         if (!self.liveBlur || !REUIKitIsFlatMode()) {
-            view.backgroundColor = self.backgroundColor;
+            view.backgroundColor = self.itemStyle.backgroundColor;
         }
         view.layer.cornerRadius = self.cornerRadius;
         view.layer.borderColor = self.borderColor.CGColor;
@@ -188,7 +200,7 @@
                                                                          index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset,
                                                                          rect.size.width,
                                                                          self.separatorHeight)];
-        separatorView.backgroundColor = self.separatorColor;
+        separatorView.backgroundColor = self.itemStyle.separatorColor;
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.menuView addSubview:separatorView];
         

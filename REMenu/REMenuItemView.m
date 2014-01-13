@@ -56,13 +56,17 @@
         if (hasSubtitle) {
             // Dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
             //
-            titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
+            titleFrame = CGRectMake(self.menu.itemStyle.textOffset.width,
+                                    self.menu.itemStyle.textOffset.height,
+                                    0, floorf(frame.size.height / 1.725));
 
-            CGRect subtitleFrame = CGRectMake(self.menu.subtitleTextOffset.width, self.menu.subtitleTextOffset.height + titleFrame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
+            CGRect subtitleFrame = CGRectMake(self.menu.subtitleItemStyle.textOffset.width,
+                                              self.menu.subtitleItemStyle.textOffset.height + titleFrame.size.height,
+                                              0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
             self.subtitleLabel = ({
                 UILabel *label =[[UILabel alloc] initWithFrame:subtitleFrame];
                 label.contentMode = UIViewContentModeCenter;
-                label.textAlignment = self.menu.subtitleTextAlignment;
+                label.textAlignment = self.menu.subtitleItemStyle.textAlignment;
                 label.backgroundColor = [UIColor clearColor];
                 label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
                 label.isAccessibilityElement = NO;
@@ -70,14 +74,16 @@
             });
             [self addSubview:_subtitleLabel];
         } else {
-            titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, frame.size.height);
+            titleFrame = CGRectMake(self.menu.itemStyle.textOffset.width,
+                                    self.menu.itemStyle.textOffset.height,
+                                    0, frame.size.height);
         }
 
         _titleLabel = ({
             UILabel *label = [[UILabel alloc] initWithFrame:titleFrame];
             label.isAccessibilityElement = NO;
             label.contentMode = UIViewContentModeCenter;
-            label.textAlignment = self.menu.textAlignment;
+            label.textAlignment = self.menu.itemStyle.textAlignment;
             label.backgroundColor = [UIColor clearColor];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label;
@@ -145,59 +151,66 @@
     
     // Adjust styles
     //
-    self.titleLabel.font = self.menu.font;
+    self.titleLabel.font = self.menu.itemStyle.font;
     self.titleLabel.text = self.item.title;
-    self.titleLabel.textColor = self.menu.textColor;
-    self.titleLabel.shadowColor = self.menu.textShadowColor;
-    self.titleLabel.shadowOffset = self.menu.textShadowOffset;
-    self.titleLabel.textAlignment = self.menu.textAlignment;
-    self.subtitleLabel.font = self.menu.subtitleFont;
+    self.titleLabel.textColor = self.menu.itemStyle.textColor;
+    self.titleLabel.shadowColor = self.menu.itemStyle.textShadowColor;
+    self.titleLabel.shadowOffset = self.menu.itemStyle.textShadowOffset;
+    self.titleLabel.textAlignment = self.menu.itemStyle.textAlignment;
+    
+    self.subtitleLabel.font = self.menu.subtitleItemStyle.font;
     self.subtitleLabel.text = self.item.subtitle;
-    self.subtitleLabel.textColor = self.menu.subtitleTextColor;
-    self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
-    self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
-    self.subtitleLabel.textAlignment = self.menu.subtitleTextAlignment;
+    self.subtitleLabel.textColor = self.menu.subtitleItemStyle.textColor;
+    self.subtitleLabel.shadowColor = self.menu.subtitleItemStyle.textShadowColor;
+    self.subtitleLabel.shadowOffset = self.menu.subtitleItemStyle.textShadowOffset;
+    self.subtitleLabel.textAlignment = self.menu.subtitleItemStyle.textAlignment;
     
     self.item.customView.frame = CGRectMake(0, 0, self.titleLabel.frame.size.width, self.frame.size.height);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundView.backgroundColor = self.menu.highlightedBackgroundColor;
-    self.separatorView.backgroundColor = self.menu.highlightedSeparatorColor;
+    self.backgroundView.backgroundColor = self.menu.highlightedItemStyle.backgroundColor;
+    self.separatorView.backgroundColor = self.menu.highlightedItemStyle.separatorColor;
     self.imageView.image = self.item.higlightedImage ? self.item.higlightedImage : self.item.image;
-    self.titleLabel.textColor = self.menu.highlightedTextColor;
-    self.titleLabel.shadowColor = self.menu.highlightedTextShadowColor;
-    self.titleLabel.shadowOffset = self.menu.highlightedTextShadowOffset;
-    self.subtitleLabel.textColor = self.menu.subtitleHighlightedTextColor;
-    self.subtitleLabel.shadowColor = self.menu.subtitleHighlightedTextShadowColor;
-    self.subtitleLabel.shadowOffset = self.menu.subtitleHighlightedTextShadowOffset;
+    
+    self.titleLabel.textColor = self.menu.highlightedItemStyle.textColor;
+    self.titleLabel.shadowColor = self.menu.highlightedItemStyle.textShadowColor;
+    self.titleLabel.shadowOffset = self.menu.highlightedItemStyle.textShadowOffset;
+    
+    self.subtitleLabel.textColor = self.menu.subtitleHighlightedItemStyle.textColor;
+    self.subtitleLabel.shadowColor = self.menu.subtitleHighlightedItemStyle.textShadowColor;
+    self.subtitleLabel.shadowOffset = self.menu.subtitleHighlightedItemStyle.textShadowOffset;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.backgroundView.backgroundColor = [UIColor clearColor];
-    self.separatorView.backgroundColor = self.menu.separatorColor;
+    self.separatorView.backgroundColor = self.menu.itemStyle.separatorColor;
     self.imageView.image = self.item.image;
-    self.titleLabel.textColor = self.menu.textColor;
-    self.titleLabel.shadowColor = self.menu.textShadowColor;
-    self.titleLabel.shadowOffset = self.menu.textShadowOffset;
-    self.subtitleLabel.textColor = self.menu.subtitleTextColor;
-    self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
-    self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
+    
+    self.titleLabel.textColor = self.menu.itemStyle.textColor;
+    self.titleLabel.shadowColor = self.menu.itemStyle.textShadowColor;
+    self.titleLabel.shadowOffset = self.menu.itemStyle.textShadowOffset;
+    
+    self.subtitleLabel.textColor = self.menu.subtitleItemStyle.textColor;
+    self.subtitleLabel.shadowColor = self.menu.subtitleItemStyle.textShadowColor;
+    self.subtitleLabel.shadowOffset = self.menu.subtitleItemStyle.textShadowOffset;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.backgroundView.backgroundColor = [UIColor clearColor];
-    self.separatorView.backgroundColor = self.menu.separatorColor;
+    self.separatorView.backgroundColor = self.menu.itemStyle.separatorColor;
     self.imageView.image = self.item.image;
-    self.titleLabel.textColor = self.menu.textColor;
-    self.titleLabel.shadowColor = self.menu.textShadowColor;
-    self.titleLabel.shadowOffset = self.menu.textShadowOffset;
-    self.subtitleLabel.textColor = self.menu.subtitleTextColor;
-    self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
-    self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
+    
+    self.titleLabel.textColor = self.menu.itemStyle.textColor;
+    self.titleLabel.shadowColor = self.menu.itemStyle.textShadowColor;
+    self.titleLabel.shadowOffset = self.menu.itemStyle.textShadowOffset;
+    
+    self.subtitleLabel.textColor = self.menu.subtitleItemStyle.textColor;
+    self.subtitleLabel.shadowColor = self.menu.subtitleItemStyle.textShadowColor;
+    self.subtitleLabel.shadowOffset = self.menu.subtitleItemStyle.textShadowOffset;
 
     CGPoint endedPoint = [touches.anyObject locationInView:self];
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))

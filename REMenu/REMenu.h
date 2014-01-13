@@ -28,6 +28,7 @@
 #import "RECommonFunctions.h"
 #import "REMenuItem.h"
 #import "REMenuContainerView.h"
+#import "REMenuItemStyle.h"
 
 @class REMenuItem;
 
@@ -55,38 +56,21 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 
 // Style
 //
+@property (strong, readwrite, nonatomic) REMenuItemStyle *itemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *highlightedItemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *subtitleItemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *subtitleHighlightedItemStyle;
+
 @property (assign, readwrite, nonatomic) CGFloat cornerRadius;
 @property (strong, readwrite, nonatomic) UIColor *shadowColor;
 @property (assign, readwrite, nonatomic) CGSize shadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat shadowOpacity;
 @property (assign, readwrite, nonatomic) CGFloat shadowRadius;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
-@property (strong, readwrite, nonatomic) UIColor *backgroundColor;
-@property (strong, readwrite, nonatomic) UIColor *separatorColor;
 @property (assign, readwrite, nonatomic) CGFloat separatorHeight;
-@property (strong, readwrite, nonatomic) UIFont *font;
-@property (strong, readwrite, nonatomic) UIColor *textColor;
-@property (strong, readwrite, nonatomic) UIColor *textShadowColor;
 @property (assign, readwrite, nonatomic) CGSize imageOffset;
-@property (assign, readwrite, nonatomic) CGSize textOffset;
-@property (assign, readwrite, nonatomic) CGSize textShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *highlightedBackgroundColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedSeparatorColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
-@property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
-@property (strong, readwrite, nonatomic) UIFont *subtitleFont;
-@property (strong, readwrite, nonatomic) UIColor *subtitleTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subtitleTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subtitleTextOffset;
-@property (assign, readwrite, nonatomic) CGSize subtitleTextShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
-@property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
 @property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
