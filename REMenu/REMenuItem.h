@@ -24,6 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "REMenuItemStyle.h"
 
 @interface REMenuItem : NSObject
 
@@ -35,6 +36,12 @@
 @property (copy, readwrite, nonatomic) void (^action)(REMenuItem *item);
 @property (assign, readwrite, nonatomic) NSInteger tag;
 @property (strong, readwrite, nonatomic) UIView *customView;
+
+// Style
+@property (strong, readwrite, nonatomic) REMenuItemStyle *itemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *highlightedItemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *subtitleItemStyle;
+@property (strong, readwrite, nonatomic) REMenuItemStyle *subtitleHighlightedItemStyle;
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
