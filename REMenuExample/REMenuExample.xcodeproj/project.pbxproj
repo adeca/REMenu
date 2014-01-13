@@ -36,6 +36,7 @@
 		30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7AB16D54641001949EA /* REMenuItemView.m */; };
 		30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7B016D54CE0001949EA /* REMenuContainerView.m */; };
 		30E405CC181581B200C6B0F4 /* Balloon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E405CB181581B200C6B0F4 /* Balloon@2x.png */; };
+		7130689C1883B91000E7CBB0 /* REMenuItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130689B1883B91000E7CBB0 /* REMenuItemStyle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,8 @@
 		30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
 		30E0F7B016D54CE0001949EA /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
 		30E405CB181581B200C6B0F4 /* Balloon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Balloon@2x.png"; sourceTree = "<group>"; };
+		7130689A1883B91000E7CBB0 /* REMenuItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemStyle.h; sourceTree = "<group>"; };
+		7130689B1883B91000E7CBB0 /* REMenuItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemStyle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +205,8 @@
 				30E0F7AB16D54641001949EA /* REMenuItemView.m */,
 				30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */,
 				30E0F7B016D54CE0001949EA /* REMenuContainerView.m */,
+				7130689A1883B91000E7CBB0 /* REMenuItemStyle.h */,
+				7130689B1883B91000E7CBB0 /* REMenuItemStyle.m */,
 			);
 			name = REMenu;
 			path = ../REMenu;
@@ -287,6 +292,7 @@
 				30E0F7AC16D54641001949EA /* REMenu.m in Sources */,
 				30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */,
 				30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */,
+				7130689C1883B91000E7CBB0 /* REMenuItemStyle.m in Sources */,
 				30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */,
 				30B00DDB17CCFD280010D439 /* ActivityViewController.m in Sources */,
 				30B00DDC17CCFD280010D439 /* ExploreViewController.m in Sources */,
